@@ -11,6 +11,10 @@ extern "C" {
 
 #define MAXOPT 16
 
+#ifndef COAP_URI_PATH_WILDCARD
+#define COAP_URI_PATH_WILDCARD "*wldc*rd*"
+#endif // COAP_URI_PATH_WILDCARD
+
 //http://tools.ietf.org/html/rfc7252#section-3
 typedef struct
 {

@@ -407,12 +407,20 @@ int coap_handle_req(coap_rw_buffer_t *scratch, const coap_packet_t *inpkt, coap_
         {
             if (count != ep->path->count)
                 goto next;
-            for (i=0;i<count;i++)
+            for (i = 0; i < count; i++)
             {
+                if (strlen(COAP_URI_PATH_WILDCARD) == strlen(ep->path->elems[i]) && (0 != memcmp(ep->path->elems[i], COAP_URI_PATH_WILDCARD, strlen(COAP_URI_PATH_WILDCARD))))
+                {
+                    // wildcard
+                }
+                else
+            {
+                    // not wildcard, do the usual thing
                 if (opt[i].buf.len != strlen(ep->path->elems[i]))
                     goto next;
                 if (0 != memcmp(ep->path->elems[i], opt[i].buf.p, opt[i].buf.len))
                     goto next;
+                }
             }
             // match!
             return ep->handler(scratch, inpkt, outpkt, inpkt->hdr.id[0], inpkt->hdr.id[1]);
