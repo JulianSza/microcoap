@@ -139,13 +139,13 @@ typedef enum
 ///////////////////////
 
 typedef int (*coap_endpoint_func)(coap_rw_buffer_t *scratch, const coap_packet_t *inpkt, coap_packet_t *outpkt, uint8_t id_hi, uint8_t id_lo);
-#ifndef MAX_SEGMENTS
-#define MAX_SEGMENTS 2  // 2 = /foo/bar, 3 = /foo/bar/baz
-#endif // MAX_SEGMENTS
+#ifndef MICROCOAP_MAX_SEGMENTS
+#define MICROCOAP_MAX_SEGMENTS 2 // 2 = /foo/bar, 3 = /foo/bar/baz
+#endif                           // MICROCOAP_MAX_SEGMENTS
 typedef struct
 {
     int count;
-    const char *elems[MAX_SEGMENTS];
+    const char *elems[MICROCOAP_MAX_SEGMENTS];
 } coap_endpoint_path_t;
 
 typedef struct
