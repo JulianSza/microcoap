@@ -284,7 +284,7 @@ int coap_build(uint8_t *buf, size_t *buflen, const coap_packet_t *pkt)
     p = buf + 4;
     if ((pkt->hdr.tkl > 0) && (pkt->hdr.tkl != pkt->tok.len))
         return COAP_ERR_UNSUPPORTED;
-    
+
     if (pkt->hdr.tkl > 0)
         memcpy(p, pkt->tok.p, pkt->hdr.tkl);
 
@@ -409,7 +409,7 @@ int coap_handle_req(coap_rw_buffer_t *scratch, const coap_packet_t *inpkt, coap_
                 goto next;
             for (i = 0; i < count; i++)
             {
-                if (strlen(COAP_URI_PATH_WILDCARD) == strlen(ep->path->elems[i]) && (0 != memcmp(ep->path->elems[i], COAP_URI_PATH_WILDCARD, strlen(COAP_URI_PATH_WILDCARD))))
+                if (strlen(COAP_URI_PATH_WILDCARD) == strlen(ep->path->elems[i]) && (0 == memcmp(ep->path->elems[i], COAP_URI_PATH_WILDCARD, strlen(COAP_URI_PATH_WILDCARD))))
                 {
                     // wildcard
                 }
